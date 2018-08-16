@@ -15,13 +15,11 @@ class AppTest < MiniTest::Test
 	def test_get_long_url_with_short_url_path_param
 		get '/asdf123'
 
-		expected_response = 'asdf123'
-
-		assert last_response.ok?
-		assert_equal expected_response, last_response.body
+		assert_equal 301, last_response.status
+		assert_equal "http://www.google.com", last_response.location
 	end
 
-	def test_get_long_url_with_short_url_path_param
+	def test_post_with_url_returns_short_url_and_original_url_in_json
 		example_long_url = 'http://www.google.com'
 
 		post '/', {url: example_long_url}
