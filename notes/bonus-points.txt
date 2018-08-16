@@ -1,0 +1,5 @@
+good git commit messages
+Handle forgotten "http://" at the start of a URL.
+tests
+Dockerfile
+simple frontend that can create and display shortened URLs without reloading the page.
