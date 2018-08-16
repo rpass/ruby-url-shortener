@@ -18,4 +18,13 @@ class TestExample < Minitest::Test
 
 		assert_equal url, short_url.url
 	end
+
+	def test_short_url_returns_the_shortened_url
+		url = 'http://www.google.com'
+		expected_short_url = 'asdf123'
+
+		short_url = ShortUrl.new(url)
+
+		assert_equal expected_short_url, short_url.short_url
+	end
 end
