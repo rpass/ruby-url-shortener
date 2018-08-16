@@ -13,8 +13,8 @@ require './lib/short_url.rb'
 # returns a 301 Permanently Remove redirect response
 # { short_url: 'asdf', url: 'http://www.google.com' }
 get '/:short_url' do
-	short_url = params[:short_url]
-	url = 'http://www.google.com'
+	short_url = params['short_url']
+	url = ShortUrl.find(short_url).url
 	
 	redirect url, 301
 end
@@ -28,8 +28,10 @@ end
 # returns JSON response with `url` and `short_url`
 post '/' do
 	params = JSON.parse(request.body.read)
-	url = params["url"]
+	url = params['url']
 	short_url = ShortUrl.new(url)
+	
+	ShortUrl.add(short_url)
 	
 	{
 		short_url: short_url.short_url,
