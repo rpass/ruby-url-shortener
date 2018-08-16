@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'rack/test'
 require 'sinatra'
-require './lib/app.rb'
+require './app/controllers/app.rb'
 
 require 'json'
 

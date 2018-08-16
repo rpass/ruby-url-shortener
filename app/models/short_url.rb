@@ -1,4 +1,4 @@
-require './lib/url_shortener.rb'
+require './app/services/url_shortener.rb'
 
 class ShortUrl
 	attr_reader :url, :short_url

@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require "./lib/short_url.rb"
+require "./app/models/short_url.rb"
 
 class TestExample < Minitest::Test
 

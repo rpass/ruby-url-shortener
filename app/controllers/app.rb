@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'json'
 
-require './lib/short_url.rb'
+require './app/models/short_url.rb'
 
 ##
 # This endpoint accepts GET requests with a path param and

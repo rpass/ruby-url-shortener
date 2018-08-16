@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require "./lib/example.rb"
+require "./app/example.rb"
 
 class TestExample < Minitest::Test
 

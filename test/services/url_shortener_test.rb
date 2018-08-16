@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require "./lib/url_shortener.rb"
+require "./app/services/url_shortener.rb"
 
 class TestUrlShortener < Minitest::Test
 
