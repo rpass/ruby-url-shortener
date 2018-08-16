@@ -2,7 +2,8 @@ require 'sinatra'
 require 'json'
 
 ##
-# This endpoint returns the long (original) url when
+# This endpoint accepts GET requests with a path param and
+# returns the long (original) url when
 # supplied with a short url as a path parameter
 #
 # usage:
@@ -15,8 +16,8 @@ get '/:short_url' do
 end
 
 ##
-# This endpoint accepts POST request body of
-# a url and returns a JSON response including 
+# This endpoint accepts POST request body of a url and 
+# returns a JSON response including 
 # the original url and the shortened url
 #
 # accepts POST requests with JSON body
