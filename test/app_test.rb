@@ -22,7 +22,7 @@ class AppTest < MiniTest::Test
 	def test_post_with_url_returns_short_url_and_original_url_in_json
 		example_long_url = 'http://www.google.com'
 		# hex digest of SHA256 hash of http://www.google.com
-		expected_short_url = '253d142'
+		expected_short_url = 'asdf123'
 		expected_response = {
 					short_url: expected_short_url,
 					url: example_long_url

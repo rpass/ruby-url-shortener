@@ -32,4 +32,22 @@ class TestExample < Minitest::Test
 			assert_equal expected_short_url, short_url.short_url
 		end
 	end
+
+	def test_that_add_and_find_keep_track_of_in_memory_short_urls
+		short_urls = [
+			ShortUrl.new('http://www.google.com'),
+			ShortUrl.new('https://news.ycombinator.com/'),
+			ShortUrl.new('https://www.reddit.com/')
+		]
+
+		short_urls.each do |short_url|
+			Db.add(short_url)
+
+			assert_equal short_url, Db.find(short_url.short_url)
+		end
+	end
+
+	def test_that_find_returns_nil_when_no_short_url_object_matches_the_short_url
+		assert_nil ShortUrl.find('123')
+	end
 end
