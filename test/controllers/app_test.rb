@@ -27,6 +27,12 @@ class AppTest < MiniTest::Test
 		assert_equal @example_long_url, last_response.location
 	end
 
+	def test_get_long_url_with_no_existent_short_url_returns_404_not_found
+		get "/1234"
+
+		assert_equal 404, last_response.status
+	end
+
 	def test_post_with_url_returns_short_url_and_original_url_in_json
 		example_long_url = 'http://www.google.com'
 		# hex digest of SHA256 hash of http://www.google.com

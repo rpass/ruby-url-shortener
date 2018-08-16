@@ -4,31 +4,30 @@ require 'json'
 require './app/models/short_url.rb'
 
 ##
-# This endpoint accepts GET requests with a path param and
-# returns the long (original) url when
-# supplied with a short url as a path parameter
-#
-# usage:
-# accepts requests like GET /asdf
-# returns a 301 Permanently Remove redirect response
-# { short_url: 'asdf', url: 'http://www.google.com' }
+# This endpoint returns the stored URL mapped to 
+# the shortened URL in the path parameter
 get '/:short_url' do
 	short_url = params['short_url']
-	url = ShortUrl.find(short_url).url
 	
+	# Normally, passing user input directly into queries
+	# is dangerous and could leave you vulnerable
+	# to an injection attack
+	short_url = ShortUrl.find(short_url)
+	
+	return 404 if short_url.nil?
+
+	url = short_url.url
 	redirect url, 301
 end
 
 ##
-# This endpoint accepts POST request body of a url and 
-# returns a JSON response including 
-# the original url and the shortened url
-#
-# accepts POST requests with JSON body
-# returns JSON response with `url` and `short_url`
+# This endpoint maps the URL in the request body
+# to a shortened URL and returns a JSON response 
+# including the original url and the shortened url
 post '/' do
 	params = JSON.parse(request.body.read)
 	url = params['url']
+
 	short_url = ShortUrl.new(url)
 	
 	ShortUrl.add(short_url)
