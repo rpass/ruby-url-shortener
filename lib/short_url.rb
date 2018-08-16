@@ -3,6 +3,6 @@ class ShortUrl
 
 	def initialize(url)
 		@url = url
-		@short_url = 'asdf123'
+		@short_url = UrlShortener.shorten(@url)
 	end
 end
