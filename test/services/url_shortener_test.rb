@@ -6,8 +6,8 @@ class TestUrlShortener < Minitest::Test
 	def test_shorten_takes_a_url_and_returns_first_six_characters_of_sha256_hexdigest
 		url = 'http://www.google.com'
 
-		# hex digest of SHA256 hash of http://www.google.com
-		expected_short_url = '253d142'
+		# first 6 chars of hex digest of SHA256 hash of http://www.google.com
+		expected_short_url = '253d14'
 
 		actual_ouput = UrlShortener.shorten(url)
 
