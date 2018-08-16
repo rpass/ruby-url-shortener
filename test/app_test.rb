@@ -29,7 +29,7 @@ class AppTest < MiniTest::Test
 				}.to_json
 
 
-		post '/', { url: example_long_url }
+		post '/', { url: example_long_url }.to_json
 
 		assert last_response.ok?
 		assert_equal expected_response, last_response.body

@@ -27,7 +27,8 @@ end
 # accepts POST requests with JSON body
 # returns JSON response with `url` and `short_url`
 post '/' do
-	url = params[:url]
+	params = JSON.parse(request.body.read)
+	url = params["url"]
 	short_url = ShortUrl.new(url)
 	
 	{
