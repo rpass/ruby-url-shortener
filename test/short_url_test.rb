@@ -41,9 +41,9 @@ class TestExample < Minitest::Test
 		]
 
 		short_urls.each do |short_url|
-			Db.add(short_url)
+			ShortUrl.add(short_url)
 
-			assert_equal short_url, Db.find(short_url.short_url)
+			assert_equal short_url, ShortUrl.find(short_url.short_url)
 		end
 	end
 

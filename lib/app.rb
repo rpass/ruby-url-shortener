@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'json'
 
+require './lib/short_url.rb'
+
 ##
 # This endpoint accepts GET requests with a path param and
 # returns the long (original) url when
@@ -26,9 +28,10 @@ end
 # returns JSON response with `url` and `short_url`
 post '/' do
 	url = params[:url]
+	short_url = ShortUrl.new(url)
 	
 	{
-		short_url: 'asdf123',
+		short_url: short_url.short_url,
 		url: url
 	}.to_json
 end 
