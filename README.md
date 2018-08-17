@@ -1,9 +1,32 @@
-# Rob's URL Shrtnr
+# Rob's URL Shrtnr Service
+
+This is basic URL shortener service built using Ruby and Sinatra.
+
+### Known shortcomings
+
+#### Not persistant
+There is __no__ persistance. The in-memory URL map is emptied between server restarts. 
+
+#### Not scalable
+The stateful nature of the app means it is not easily scalable since there would be no consistency between multiple processes running the application. Sequential requests could be distributed to different instances of the application and retrieve inconsistent results. 
+
+#### Not safe
+Very little sanitization is done on the user input. This may leave the application vulnerable to exploitation or other users vulnerableto an attacker hiding a malevolent URL behind a benign looking shortened URL.
 
 ## Guide
-<!-- TODO: write guide -->
+### Assumptions
+You have [`bundler`](https://bundler.io/) installed
 
-# Url Shortener Code Test
+
+### Steps
+1. Clone this repository
+2. Run `bundle` in the project root
+3. Run `rake test` to run all tests
+4. Run `rake run` to start an instance of the application
+5. Visit `localhost:4567` in your browser to see the basic landing page
+6. Or run `curl localhost:4567 -X POST -d '{ "url": "http://www.farmdrop.com" }'` to submit a URL from your terminal
+
+## Url Shortener Code Test
 
 Without using an external database, we'd like you to create a URL shortening
 service. The URLs do not need to persist between restarts, but should be
