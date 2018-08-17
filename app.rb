@@ -3,6 +3,9 @@ require 'json'
 
 require './app/models/short_url.rb'
 
+set :public_folder, File.dirname(__FILE__) + '/public'
+
+
 ##
 # This endpoint returns the stored URL mapped to 
 # the shortened URL in the path parameter
@@ -20,6 +23,9 @@ get '/:short_url' do
 	redirect url, 301
 end
 
+##
+# This endpoint returns a basic landing page to
+# generate and present short URLs dynamically
 get '/' do
 	send_file './app/views/home.html'
 end
@@ -31,6 +37,11 @@ end
 post '/' do
 	params = JSON.parse(request.body.read)
 	url = params['url']
+
+	# consult http://rubular.com/ for ruby regex help
+	unless /^https{0,1}:\/\// =~ url
+		url.prepend 'http://'
+	end
 
 	short_url = ShortUrl.new(url)
 	
