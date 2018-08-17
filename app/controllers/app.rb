@@ -20,6 +20,10 @@ get '/:short_url' do
 	redirect url, 301
 end
 
+get '/' do
+	send_file './app/views/home.html'
+end
+
 ##
 # This endpoint maps the URL in the request body
 # to a shortened URL and returns a JSON response 
