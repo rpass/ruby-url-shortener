@@ -1,6 +1,6 @@
 [done] good git commit messages
 [done] tests
+[done] Handle forgotten "http://" at the start of a URL.
+[done] simple frontend that can create and display shortened URLs without reloading the page.
 
-Handle forgotten "http://" at the start of a URL.
 Dockerfile
-simple frontend that can create and display shortened URLs without reloading the page.
