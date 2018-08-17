@@ -21,7 +21,7 @@ You have [`bundler`](https://bundler.io/) installed
 ### Steps
 1. Clone this repository
 2. Run `bundle` in the project root
-3. Run `rake test` to run all tests
+3. Run `rake test` or `rake` to run all tests
 4. Run `rake run` to start an instance of the application
 5. Visit `localhost:4567` in your browser to see the basic landing page
 6. Or run `curl localhost:4567 -X POST -d '{ "url": "http://www.farmdrop.com" }'` to submit a URL from your terminal
