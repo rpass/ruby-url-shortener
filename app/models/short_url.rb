@@ -1,22 +1,20 @@
 require './app/services/url_shortener.rb'
 
 class ShortUrl
-	attr_reader :url, :short_url
+  @@db = {}
 
-	def initialize(url)
-		@url = url
-		@short_url = UrlShortener.shorten(@url)
-	end
-	
-	def self.add(obj)
-		@@db[obj.short_url] = obj
-	end
+  attr_reader :url, :short_url
 
-	def self.find(short_url)
-		@@db[short_url]
-	end
+  def initialize(url)
+    @url = url
+    @short_url = UrlShortener.shorten(@url)
+  end
 
-	private
+  def self.add(obj)
+    @@db[obj.short_url] = obj
+  end
 
-	@@db = {}
+  def self.find(short_url)
+    @@db[short_url]
+  end
 end
