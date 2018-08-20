@@ -1,7 +1,7 @@
 require './app/services/url_shortener.rb'
 
 class ShortUrl
-  @@db = {}
+  @db = {}
 
   attr_reader :url, :short_url
 
@@ -11,10 +11,10 @@ class ShortUrl
   end
 
   def self.add(obj)
-    @@db[obj.short_url] = obj
+    @db[obj.short_url] = obj
   end
 
   def self.find(short_url)
-    @@db[short_url]
+    @db[short_url]
   end
 end
