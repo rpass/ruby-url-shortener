@@ -7,7 +7,7 @@ class ShortUrl
 
   def initialize(url)
     @url = url
-    @short_url = UrlShortener.shorten(@url)
+    @short_url = create_short_url(@url)
   end
 
   def self.add(obj)
@@ -16,5 +16,14 @@ class ShortUrl
 
   def self.find(short_url)
     @db[short_url]
+  end
+
+  private
+
+  def create_short_url(url)
+    short_url = UrlShortener.shorten(url)
+    return short_url unless self.class.find(short_url)
+
+    UrlShortener.shorten(url, with_salt: true)
   end
 end

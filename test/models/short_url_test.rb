@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require './app/models/short_url.rb'
 
-class TestExample < Minitest::Test
+class TestShortUrl < Minitest::Test
   def test_it_can_be_initialized
     url = 'http://www.google.com'
 
@@ -44,6 +44,19 @@ class TestExample < Minitest::Test
 
       assert_equal short_url, ShortUrl.find(short_url.short_url)
     end
+  end
+
+  ##
+  # When adding a new ShortUrl to our in-memory collection will
+  # create a key collision, the new ShortUrl recalculates its
+  # short_url until it finds a unique short_url
+  def test_that_new_will_recover_from_a_key_collision
+    first_short_url = ShortUrl.new('https://www.google.com')
+    ShortUrl.add(first_short_url)
+
+    second_short_url = ShortUrl.new('https://www.google.com')
+
+    refute_equal first_short_url.short_url, second_short_url.short_url
   end
 
   def test_that_find_returns_nil_when_no_short_url_object_matches_the_short_url
